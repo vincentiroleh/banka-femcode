@@ -1,0 +1,26 @@
+{
+  "name": "banka-femcode",
+  "version": "1.0.0",
+  "description": "Femcode Bootcamp (NodeJS) assessment.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vincentiroleh/banka-femcode.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vincentiroleh/banka-femcode/issues"
+  },
+  "homepage": "https://github.com/vincentiroleh/banka-femcode#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  }
+}
