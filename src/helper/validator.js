@@ -1,0 +1,1 @@
+// Write a validator that checks the {{URL}}/bank/create endpoint if all necessary data is entered
