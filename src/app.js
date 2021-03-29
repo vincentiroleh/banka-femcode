@@ -1,3 +1,4 @@
+const { json } = require("express");
 const express = require("express");
 const logger = require("morgan");
 const app = express();
@@ -38,7 +39,13 @@ app.get("/api/v1/bank/users", (req, res) => {
 
 // get a banking user
 app.get("/api/v1/bank/user/:id", (req, res) => {
-  
+  let { id } = req.params;
+  let found = Banka.find((user) => user.id == id);
+  if (found) {
+    res.status(200).json({
+      data: found,
+    });
+  } else return res.status(404).json({ message: "user not found" });
 });
 
 // Create a user banking detail
@@ -56,8 +63,43 @@ app.post("/api/v1/bank/create", (req, res) => {
 });
 
 // Update user details
+app.put("/api/v1/bank/update", async (req, res) => {
+  let id = req.body.id;
+  let updateData = req.body;
+
+  let found = Banka.find((user) => user.id == id);
+
+  if (found) {
+    return res.status(200).json({
+      status: 200,
+      success: true,
+      message: "Account updated successfully",
+      data: found,
+    });
+  } else {
+    return res.status(404).json({
+      status: 404,
+      success: false,
+      message: "Account not found",
+    });
+  }
+});
 
 // Delete user details
+
+app.delete("/api/v1/bank/delete/user", (req, res) => {
+  let { id } = req.body;
+  Banka.forEach((user, index) => {
+    if (user.id == id) {
+      Banka.splice(index, 1);
+      res.status(200).json({
+        status: 200,
+        success: true,
+        message: "Account removed successfully",
+      });
+    }
+  });
+});
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`server up on port ${port}`));
